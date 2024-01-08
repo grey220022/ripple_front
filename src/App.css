@@ -1,0 +1,134 @@
+.App {
+  text-align: center;
+  background-color: white; /* 设置背景色为白色 */
+}
+
+.App-nav {
+  display: flex; /* 使用flex布局 */
+  justify-content: start; /* 元素靠左排列 */
+  align-items: center; /* 垂直居中 */
+  background-color: #282c34; /* 导航栏背景颜色 */
+  padding: 10px; /* 导航栏内边距 */
+}
+
+.App-title {
+  margin-left: 20px; /* 标题与logo之间的间距 */
+  color: #f0e68c; /* 设置标题的颜色，这里使用淡黄色，您可以根据需要更改 */
+  font-size: 2em; /* 调整标题的字体大小 */
+}
+.App-logo {
+  width: 100px; /* 缩小logo尺寸 */
+  height: auto; /* 保持图片的高宽比 */
+}
+
+.App-header {
+  background-color: #f0f0f0; /* 轻微灰色背景 */
+  border-radius: 10px; /* 圆角 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 阴影 */
+  align-items: flex-start; /* 左对齐 */
+  padding: 20px; /* 内边距 */
+  margin: 20px 0; /* 上下外边距 */
+}
+
+h1 {
+  font-size: 3em; /* 增大标题字体 */
+  color: black; /* 设置标题字体颜色 */
+}
+
+.address {
+  font-size: 0.9em; /* 减小字体大小 */
+  color: #333; /* 深色字体 */
+  text-align: left; /* 左对齐 */
+  margin: 5px 0; /* 间距调整 */
+}
+
+.label {
+  font-weight: bold; /* 加粗字体 */
+  color: #555; /* 略深颜色 */
+}
+
+.value {
+  font-weight: normal; /* 正常字体 */
+  color: #333; /* 深色 */
+}
+
+.buttons {
+  display: flex; /* 使用flex布局 */
+  justify-content: center; /* 水平居中 */
+  gap: 10px; /* 按钮之间的间距 */
+  margin-top: 30px; /* 距离上方的间距 */
+  margin-bottom: 10px;
+}
+
+.buttons button {
+  padding: 10px 20px; /* 按钮内边距，根据需要调整 */
+  background-color: #61dafb; /* 按钮背景色 */
+  border: none; /* 去掉边框 */
+  border-radius: 5px; /* 圆角边框 */
+  color: white; /* 字体颜色 */
+  cursor: pointer; /* 鼠标悬停时的光标样式 */
+}
+
+.buttons button:hover {
+  background-color: #4f9dc5; /* 鼠标悬停时的背景色 */
+}
+
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal p {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.input-group {
+  margin-top: 20px; /* 在输入框上方增加一些空间 */
+  margin-bottom: 20px; /* 在输入框下方增加一些空间 */
+}
+
+.input-group input {
+  padding: 10px; /* 增加输入框内边距 */
+  border: 2px solid #61dafb; /* 设置边框颜色和宽度 */
+  border-radius: 5px; /* 圆角边框 */
+  width: 300px; /* 设置输入框宽度 */
+  font-size: 1em; /* 设置字体大小 */
+}
+
+.input-group input:focus {
+  outline: none; /* 去掉焦点时的轮廓线 */
+  border-color: #4f9dc5; /* 焦点状态下的边框颜色 */
+}
+
+.input-group input:hover {
+  border-color: #4f9dc5; /* 鼠标悬停时的边框颜色 */
+}
+
+.view-nft-button {
+  padding: 10px 20px !important;
+  background-color: #ff9800 !important; /* 鲜艳的橙色背景 */
+  color: white !important; /* 白色字体 */
+  border: none !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+  font-weight: bold !important; /* 加粗字体 */
+  margin-left: 10px; /* 与其他按钮的间隔 */
+}
+
+.view-nft-button:hover {
+  background-color: #e68a00 !important; /* 悬停时变为稍微深一点的橙色 */
+}
