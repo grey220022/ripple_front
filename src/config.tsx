@@ -1,0 +1,1 @@
+export const backendEndpoint = 'https://main--funny-sundae-1a8de2.netlify.app/';

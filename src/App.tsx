@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
 
@@ -6,6 +6,7 @@ import goldBadgeImg from './gold.png';
 import silverBadgeImg from './silver.png';
 import bronzeBadgeImg from './bronze.png';
 
+import { backendEndpoint } from './config';
 
 function App() {
   const [address, setAddress] = useState('');
@@ -20,12 +21,12 @@ function App() {
   // 从服务器获取 Ripple 地址和余额
   useEffect(() => {
     console.log('Fetching Ripple address and balance...');
-    fetch('http://localhost:3000/ripple-address')
+    fetch(`${backendEndpoint}/ripple-address`)
       .then(response => response.json())
       .then(data => setAddress(data.address))
       .catch(error => console.log('Error fetching Ripple address:', error));
 
-    fetch('http://localhost:3000/ripple-balance')
+    fetch(`${backendEndpoint}/ripple-balance`)
       .then(response => response.json())
       .then(data => setBalance(data.balance))
       .catch(error => console.log('Error fetching Ripple balance:', error));
@@ -33,7 +34,7 @@ function App() {
 
   const handleMintBadge = (badgeType: any) => {
     setIsMinting(true);
-    fetch('http://localhost:3000/mint-badge', {
+    fetch(`${backendEndpoint}/mint-badge`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
