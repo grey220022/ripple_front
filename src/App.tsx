@@ -6,7 +6,9 @@ import goldBadgeImg from './gold.png';
 import silverBadgeImg from './silver.png';
 import bronzeBadgeImg from './bronze.png';
 
-import { backendEndpoint } from './config';
+//import { backendEndpoint } from './config';
+import { isInstalled, mintNFT } from "@gemwallet/api";
+import { Buffer } from 'buffer';
 
 function App() {
   const [address, setAddress] = useState('');
@@ -20,6 +22,7 @@ function App() {
 
   // 从服务器获取 Ripple 地址和余额
   useEffect(() => {
+    /*
     console.log('Fetching Ripple address and balance...');
     fetch(`${backendEndpoint}/ripple-address`)
       .then(response => response.json())
@@ -29,11 +32,48 @@ function App() {
     fetch(`${backendEndpoint}/ripple-balance`)
       .then(response => response.json())
       .then(data => setBalance(data.balance))
-      .catch(error => console.log('Error fetching Ripple balance:', error));
+      .catch(error => console.log('Error fetching Ripple balance:', error));*/
   }, []);
 
-  const handleMintBadge = (badgeType: any) => {
+  const convertStringToHex = (input: string) => {
+    return Buffer.from(input, 'utf8').toString('hex').toUpperCase();
+  }
+
+  const handleMintBadge = async (badgeType: any) => {
     setIsMinting(true);
+
+    let ipfs = badgeType === "gold" ? "ipfs://QmRShxQ8HnQBprHDaZtCAhgQmKrmNChrDBXneayf6EKnPN" : badgeType === "silver" ? "ipfs://Qmf4nW1e7PKZHDW4kEpjgUXsickv8QvA2Jvo7ns8nQ4X2y" : "ipfs://QmZzd4jE3GYmGmJ4ncZjhaKwVSSQmK6CD7nmKpHJiYqAWP";
+    // 假设的操作结果
+    if (badgeType.startsWith("ipfs")) {
+      ipfs = badgeType;
+    }
+    console.log("ipfs", ipfs);
+    console.log(convertStringToHex(ipfs));
+    ipfs = convertStringToHex(ipfs);
+    const installed = await isInstalled();
+    if (!installed.result.isInstalled) {
+      alert('Please install the Gem Wallet extension');
+      setIsMinting(false);
+      return;
+    }
+    console.log("installed", installed.result.isInstalled);
+
+
+
+    const payload = {
+      URI: ipfs,
+      flags: {
+        tfTransferable: true
+      },
+      fee: "199",
+      transferFee: 3000, // 3%,
+      NFTokenTaxon: 0
+    };
+    const result = await mintNFT(payload);
+    const ntfId = result.result?.NFTokenID;
+    const url = "https://test.bithomp.com/nft/" + ntfId;
+    setNftUrl(url);
+    /*
     fetch(`${backendEndpoint}/mint-badge`, {
       method: 'POST',
       headers: {
@@ -49,7 +89,8 @@ function App() {
     .catch(error => console.log('Error minting badge:', error))
     .finally(() => {
       setIsMinting(false); // 完成或发生错误时设置为false
-    });
+    });*/
+    setIsMinting(false); // 完成或发生错误时设置为false
   };
 
   const handleFileChange = async (event:any) => {
@@ -127,16 +168,6 @@ function App() {
         </div>
         <h1 className="App-title">Proof of Impact Protocol</h1>
       </div>
-      <header className="App-header">
-        <p className="address">
-          <span className="label">Account address:</span>
-          <span className="value"> {address}</span>
-        </p>
-        <p className="address">
-          <span className="label">Account Balance:</span>
-          <span className="value"> {balance} XRP</span>
-        </p>
-      </header>
       {isMinting && (
         <div className="modal">
           <p>Minting NFT, please wait...</p>
