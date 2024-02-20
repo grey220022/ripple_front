@@ -125,7 +125,7 @@ function App() {
         <div className="App-logo">
           <img src={require('./impic.jpeg')} alt="Logo" style={{ maxWidth: '100px', maxHeight: '100px' }} />
         </div>
-        <h1 className="App-title">Proof of Impact Protocol</h1>
+        <h1 className="App-title">Proof of Impact Protocol by Impactopia</h1>
       </div>
       <header className="App-header">
         <p className="address">
